@@ -4,7 +4,7 @@ project(3d_unrolling_cw LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-set(OpenCV_DIR "$ENV{HOME}/vcpkg/installed/x64-osx/share/opencv4" CACHE PATH "")
+# set(OpenCV_DIR "$ENV{HOME}/vcpkg/installed/x64-osx/share/opencv4" CACHE PATH "")
 
 find_package(OpenCV REQUIRED)
 find_package(libigl CONFIG REQUIRED)

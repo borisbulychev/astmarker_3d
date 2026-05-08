@@ -284,18 +284,6 @@ void Unrolling3DConverter::show_3d(const Eigen::MatrixXd &V,
  * @warning Viewer блокирует GUI, пока не закрыт
  */
 void Unrolling3DConverter::run() {
-  std::string png_path, tiff_path;
-
-  std::cout << "Введите путь к PNG файлу: ";
-  std::getline(std::cin, png_path);
-  std::cout << "Введите путь к TIFF файлу: ";
-  std::getline(std::cin, tiff_path);
-
-  if (!load(png_path, tiff_path)) {
-    std::cerr << "Не удалось загрузить файлы.\n";
-    return;
-  }
-
   const std::string win = "2D Unrolling — выделение сегмента";
   cv::namedWindow(win, cv::WINDOW_NORMAL | cv::WINDOW_GUI_EXPANDED);
   cv::setMouseCallback(win, mouse_callback, this);
