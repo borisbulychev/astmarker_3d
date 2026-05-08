@@ -1,0 +1,16 @@
+PROJECT_NAME           = "3D Unrolling Converter (ООП курсовая)"
+PROJECT_NUMBER         = "1.0"
+PROJECT_BRIEF          = "Преобразование 2D-развёртки в 3D-модель с выделением сегмента"
+OUTPUT_LANGUAGE        = Russian
+OUTPUT_DIRECTORY       = doc_doxygen
+INPUT                  = ../src
+HTML_OUTPUT            = html
+LATEX_OUTPUT           = latex
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = YES
+EXTRACT_STATIC         = YES
+GENERATE_HTML          = YES
+GENERATE_LATEX         = YES
+LATEX_OUTPUT           = latex
+PDF_HYPERLINKS         = YES
+LATEX_PDF              = YES
