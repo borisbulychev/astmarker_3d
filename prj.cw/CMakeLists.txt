@@ -4,6 +4,11 @@ project(3d_unrolling_cw LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+# Все бинарники и DLL от vcpkg — в одну папку
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY         ${CMAKE_BINARY_DIR}/out)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/out)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG   ${CMAKE_BINARY_DIR}/out)
+
 find_package(OpenCV REQUIRED)
 find_package(libigl CONFIG REQUIRED)
 
@@ -24,7 +29,7 @@ target_link_libraries(unrolling_app PRIVATE
     igl::igl_opengl
 )
 
-# ── Doxygen ──────────────────────────────────────────────────────
+# ── Doxygen ───────────────────────────────────────────────────────
 find_package(Doxygen)
 if(DOXYGEN_FOUND)
     set(DOXYGEN_IN  ${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile.in)
@@ -51,23 +56,8 @@ install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/data/
 
 # ── Install: DLL-зависимости (только Windows) ─────────────────────
 if(WIN32)
-    # vcpkg копирует нужные DLL рядом с исполняемым файлом
-    # в директорию CMAKE_RUNTIME_OUTPUT_DIRECTORY (для текущей
-    # конфигурации сборки)
-    foreach(_cfg IN ITEMS
-            "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}"
-            "${CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE}"
-            "${CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG}"
-            "${CMAKE_CURRENT_BINARY_DIR}"
-            "${CMAKE_CURRENT_BINARY_DIR}/Release"
-            "${CMAKE_CURRENT_BINARY_DIR}/Debug")
-        if(EXISTS "${_cfg}")
-            install(DIRECTORY "${_cfg}/"
-                DESTINATION bin
-                FILES_MATCHING
-                    PATTERN "*.dll"
-                    PATTERN "unrolling_app*" EXCLUDE
-            )
-        endif()
-    endforeach()
+    install(DIRECTORY ${CMAKE_BINARY_DIR}/out/
+        DESTINATION bin
+        FILES_MATCHING PATTERN "*.dll"
+    )
 endif()
