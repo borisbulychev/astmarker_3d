@@ -1,16 +1,21 @@
-PROJECT_NAME           = "3D Unrolling Converter (ООП курсовая)"
+PROJECT_NAME           = "Программа восстановления 3D-модели по развёртке"
 PROJECT_NUMBER         = "1.0"
-PROJECT_BRIEF          = "Преобразование 2D-развёртки в 3D-модель с выделением сегмента"
+PROJECT_BRIEF          = "Преобразование 2D-развёртки в 3D-модель с интерактивным выделением сегмента"
 OUTPUT_LANGUAGE        = Russian
-OUTPUT_DIRECTORY       = doc_doxygen
-INPUT                  = ../src
-HTML_OUTPUT            = html
-LATEX_OUTPUT           = latex
+
+OUTPUT_DIRECTORY       = @CMAKE_CURRENT_BINARY_DIR@/doc_doxygen
+
+INPUT                  = @CMAKE_CURRENT_SOURCE_DIR@/src
+
+RECURSIVE              = YES
 EXTRACT_ALL            = YES
 EXTRACT_PRIVATE        = YES
 EXTRACT_STATIC         = YES
+
 GENERATE_HTML          = YES
+HTML_OUTPUT            = html
+
 GENERATE_LATEX         = YES
 LATEX_OUTPUT           = latex
 PDF_HYPERLINKS         = YES
-LATEX_PDF              = YES
+USE_PDFLATEX           = YES
